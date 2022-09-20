@@ -1,0 +1,75 @@
+
+body {
+    background-color: rgb(39, 38, 38);
+    color: #ececec;
+    margin: 0;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: .5rem calc((100vw - 1050px) / 2);
+    font-family: 'Poppins';
+
+    box-shadow: 0px 0px 3px black;
+}
+.navbar i {
+    justify-self: flex-start;
+    font-size: 3rem;
+}
+header {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header code {
+    font-size: 1.5rem;
+}
+header p {
+    margin: 0;
+    font-size: .75rem;
+}
+.nav-link-container {
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+    min-width: 400px;
+}
+.nav-link {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+
+    color: #c0c0c0;
+    text-transform: lowercase;
+    text-decoration: none;
+    font-size: 1.5rem;
+    text-shadow: 1px 2px 2px black;
+
+    transition: all 200ms;
+}
+.navbar-toggler {
+    transition: all 400ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.navbar-hover-arrow {
+    opacity: 0;
+    position: absolute;
+    font-size: 1rem !important;
+    transform: translateY(15px);
+    transition: all 400ms;
+}
+.navbar-toggler:hover .navbar-hover-arrow {
+    opacity: 1;
+    transform: translateY(35px);
+}
+.nav-link:hover, .navbar-toggler:hover {
+    transform: scale(1.2);
+    color: white;
+}
