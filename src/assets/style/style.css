@@ -95,9 +95,25 @@ header p {
     display: flex;
     justify-content: center;
 }
+.backspace-key {
+    font-size: 4rem !important;
+    width: 100px;
+    margin-right: -33px !important;
+}
+.capslock-key, .shift-key {
+    font-size: 2.5rem !important;
+    font-weight: 900;
+}
+.capslock-key {
+    margin-left: -63px !important;
+}
+.shift-key {
+    width: 96px;
+    margin-left: -99px !important;
+}
 .spacebar-key {
     height: 65px !important;
-    width: 50%;
+    width: 60%;
 }
 .spacebar-icon {
     transform: rotate(90deg);
@@ -110,7 +126,7 @@ header p {
     cursor: pointer;
     font-size: 5rem;
     min-width: 60px;
-    height: 90px;
+    height: 78px;
     margin: 3px;
     border: 1px solid var(--off-white);
     border-radius: 5px;
