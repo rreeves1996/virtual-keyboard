@@ -74,9 +74,6 @@ export default function App() {
     handleCaseChange();
   };
   
-  // const renderKeyboard = () => {
-  //   return lowercaseKeyboard;
-  // }
   useEffect(() => {
     let renderedRows = document.querySelectorAll(".row");
     let backspaceKey = document.querySelector(".backspace-key");
