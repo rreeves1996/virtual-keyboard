@@ -3,7 +3,7 @@ import React from 'react';
 export default function Navbar() {
     return (
       <nav className='navbar'>
-        <i class="fa-regular fa-keyboard"></i>
+        <i className="fa-regular fa-keyboard"></i>
             <header>
                 <code>React.js Virtual Keyboard</code>
                 <p>created by Ryan Reeves</p>

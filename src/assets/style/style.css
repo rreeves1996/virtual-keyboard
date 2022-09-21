@@ -1,8 +1,18 @@
 
+:root {
+    --off-white: #ececec;
+    --grey: rgb(39, 38, 38);
+}
+
 body {
-    background-color: rgb(39, 38, 38);
+    background-color: var(--grey);
     color: #ececec;
     margin: 0;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .navbar {
     display: flex;
@@ -19,10 +29,12 @@ body {
     font-size: 3rem;
 }
 header {
-    width: 400px;
+    margin: 25px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 header code {
     font-size: 1.5rem;
@@ -72,4 +84,46 @@ header p {
 .nav-link:hover, .navbar-toggler:hover {
     transform: scale(1.2);
     color: white;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.key {
+    font-family: 'Alumni Sans Pinstripe';
+    background-color: var(--grey);
+    cursor: pointer;
+    font-size: 5rem;
+    width: 60px;
+    height: 90px;
+    margin: 3px;
+    border: 1px solid var(--off-white);
+    border-radius: 5px;
+    color: var(--off-white);
+    line-height: 75%;
+    opacity: 80%;
+    transition: all 0.15s;
+}
+.key:hover {
+    filter: brightness(1.3);
+    transform: scale(1.05);
+}
+.key:active {
+    filter: brightness(1.5);
+    transform: scale(0.95);
+    transition: scale 0.01s;
+}
+textarea {
+    margin: 25px;
+    width: 40%; height: 300px;
+    background-color: var(--grey);
+    color: var(--off-white);
+}
+textarea:focus {
+    outline: none;
+}
+.keyboard {
+    margin-top: 25px;
 }
