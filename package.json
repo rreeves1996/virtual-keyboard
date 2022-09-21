@@ -1,7 +1,7 @@
 {
   "name": "virtual-keyboard",
   "version": "0.1.0",
-  "homepage": "https://rreeves1996.github.io/virtual-keyboard",
+  "homepage": "https://rreeves1996.github.io/virtual-keyboard/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
