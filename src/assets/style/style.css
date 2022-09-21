@@ -91,6 +91,19 @@ header p {
     flex-direction: column;
     align-items: center;
 }
+.row {
+    display: flex;
+    justify-content: center;
+}
+.spacebar-key {
+    height: 65px !important;
+    width: 50%;
+}
+.spacebar-icon {
+    transform: rotate(90deg);
+    font-weight: 900;
+    pointer-events: none;
+}
 .key {
     font-family: 'Alumni Sans Pinstripe';
     background-color: var(--grey);
@@ -120,6 +133,7 @@ textarea {
     width: 40%; height: 300px;
     background-color: var(--grey);
     color: var(--off-white);
+    font-size: 2rem;
 }
 textarea:focus {
     outline: none;
