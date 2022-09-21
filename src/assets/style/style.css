@@ -96,7 +96,7 @@ header p {
     background-color: var(--grey);
     cursor: pointer;
     font-size: 5rem;
-    width: 60px;
+    min-width: 60px;
     height: 90px;
     margin: 3px;
     border: 1px solid var(--off-white);

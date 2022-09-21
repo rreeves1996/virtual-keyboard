@@ -9,7 +9,7 @@ export default function Navbar() {
                 <p>created by Ryan Reeves</p>
             </header>
             <div className="navbar-toggler">
-            <i className="fa-solid fa-bars"></i><i class="fa-solid fa-chevron-down navbar-hover-arrow"></i>
+            <i className="fa-solid fa-bars"></i><i className="fa-solid fa-chevron-down navbar-hover-arrow"></i>
             </div>
             <div className="nav-link-container collapse">
                 <a href="#" className='nav-link' id='github'>Repo Link</a>
