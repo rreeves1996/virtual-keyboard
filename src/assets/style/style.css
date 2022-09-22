@@ -8,6 +8,7 @@ body {
     background-color: var(--grey);
     color: #ececec;
     margin: 0;
+    overflow-x: hidden;
 }
 main {
     display: flex;
@@ -156,4 +157,9 @@ textarea:focus {
 }
 .keyboard {
     margin-top: 25px;
+}
+@media screen and (max-width: 968px) {
+    .keyboard {
+        transform: scale(0.75);
+    }
 }
