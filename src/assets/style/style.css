@@ -45,35 +45,78 @@ header p {
     font-size: .75rem;
 }
 .nav-link-container {
-    display: none;
-    justify-content: space-around;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    background-color: var(--grey);
+    border: 1px solid rgba(255, 255, 255, 0.493);
+    opacity: 100;
+    justify-content: center;
     align-items: center;
-    width: 40%;
-    min-width: 400px;
+    width: 140px;
+    height: 129px;
+    border-radius: 5px;
+    transform: translateY(50%);
+    transition: all 0.5s;
+}
+.nav-link-container.collapse {
+    opacity: 0;
+    pointer-events: none;
+    height: 40px;
+}
+.nav-link-container.collapse .nav-link {
+    margin: -15px;
+    transition: all 500ms;
 }
 .nav-link {
     display: flex;
     justify-content: center;
-    width: 100px;
-
-    color: #c0c0c0;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    color: var(--off-white);
     text-transform: lowercase;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 150%;
     text-shadow: 1px 2px 2px black;
-
-    transition: all 200ms;
+    margin: 0px;
+    padding: 3px 0;
+    background-color: var(--grey);
+    border-top: 1px solid rgba(255, 255, 255, 0.493);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+    transition: margin 500ms,
+    filter 200ms;
 }
-.navbar-toggler {
+.nav-link:hover {
+    background-color: rgb(121, 119, 119);
+}
+#github {
+    border-top: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#contact {
+    border-bottom: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.fa-bars {
     transition: all 400ms;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
+.navbar-toggler {
+    width: 42px;
+    display: flex;
+    justify-content: center;
+    z-index: 99999;
+}
 .navbar-hover-arrow {
     opacity: 0;
     position: absolute;
+    align-self: center !important;
     font-size: 1rem !important;
     transform: translateY(15px);
     transition: all 400ms;
@@ -82,11 +125,28 @@ header p {
     opacity: 1;
     transform: translateY(35px);
 }
-.nav-link:hover, .navbar-toggler:hover {
+.navbar-toggler:hover .fa-bars {
     transform: scale(1.2);
     color: white;
 }
+.navbar-toggler:active .fa-bars, .navbar-toggler.open:active .fa-bars{
+    transform: scale(1.05);
+    opacity: 70%;
+    transition: all 50ms;
+}
+.navbar-toggler.open .navbar-hover-arrow {
+    transform: translateY(15px);
+    opacity: 0;
+    transition: all 100ms;
+}
 
+.navbar-toggler.open .fa-bars {
+    transform: scale(1.2);
+    color: white;
+}
+.navbar-toggler.open .nav-link-container {
+    transform: translateY(50%);
+}
 .keyboard {
     display: flex;
     flex-direction: column;
