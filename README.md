@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+<h1 align="center">React.js Virtual Keyboard</h1>
 
-## Available Scripts
+  <p align="center">
+    <img src='./src/assets/react_icon.png' alt='screenshot' width="100">
+    <br />
+    <br />
+    Application created, designed, and published by Ryan Reeves
+    <br />
+    <a href="https://github.com/rreeves1996/virtual-keyboard/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/rreeves1996/virtual-keyboard/features">Inquire About Features</a>
+    <br />
+    <a href='https://rreeves-virtual-keyboard.herokuapp.com/'><h2>Heroku Deployment</h2></a>
+  </p>
+</div>
 
-In the project directory, you can run:
 
-### `npm start`
+## About
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img src='./src/assets/app.PNG' alt='screenshot' width="600">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+My version of a virtual keyboard using React. Besides the fact that I've wanted to create my own version of a virtual keyboard for awhile now, I thought it would be fun and good practice to create it using React.
+My goals included:
+* Utilize useState and useEffect for the core functionalities of the app
+* Effective use components, create components with as much reusability as possible
+* Interactive UI: I wanted the keys and anything else the user interacts with to feel "correct" and reactive. One of the biggest components (hah) of keyboards that we don't even realize is tactile feedback - I wanted to replicate this as much as possible without a physical keyboard
+* Responsive design: Most importantly, the design needs to be responsive and catered to a mobile first layout. The majority of real-world applications of a virtual keyboard involve mobile functionality - without any mobile functionality/responsiveness, the app doesn't have many (if any) use cases.
 
-### `npm test`
+## Roadmap
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [ ] Optimize mobile layout as much as possible
+    - [ ] Mobile specific animations for keys
+    - [ ] Landscape and portrait keyboard
+- [ ] Put keyboard in to its own component
+- [ ] Put textarea in its own component with keyboard
+- [ ] Tab key, enter key
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contact
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ryan Reeves - [https://www.linkedin.com/in/rreevesdev/](https://www.linkedin.com/in/rreevesdev/) - rreeves.dev@gmail.com
 
-### `npm run eject`
+Project Link: [https://github.com/rreeves1996/virtual-keyboard](https://github.com/rreeves1996/virtual-keyboard)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
