@@ -1,11 +1,7 @@
 {
   "name": "virtual-keyboard",
   "version": "0.1.0",
-<<<<<<< HEAD
   "homepage": "https://rreeves1996.github.io/virtual-keyboard",
-=======
-  "homepage": "https://github.com/rreeves1996/virtual-keyboard",
->>>>>>> cd0e115 (gh-pages commit)
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -43,8 +39,4 @@
       "last 1 safari version"
     ]
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> cd0e115 (gh-pages commit)
