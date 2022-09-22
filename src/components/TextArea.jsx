@@ -1,5 +1,6 @@
 import React, {  useEffect, useState } from 'react';
 import Keyboard from './Keyboard';
+import MobileKeyboard from './MobileKeyboard';
 import '../assets/style/style.css';
 
 
@@ -7,6 +8,7 @@ export default function TextArea() {
     const [text, addText] = useState('');
     const [uppercase, toggleCaps] = useState(false);
     const [capslock, toggleCapslock] = useState(false);
+    const [width, setWidth] = useState(0);
 
     const handleAddText = (event) => {
         if(uppercase){
@@ -53,15 +55,35 @@ export default function TextArea() {
         addText(text.slice(0, -1));
     };
 
+    useEffect(() => { 
+        queryScreenWidth();
+   
+        window.addEventListener('resize', queryScreenWidth);
+        return () => 
+          window.removeEventListener('resize', queryScreenWidth);
+        }, [])
 
-  return (
-    <>
-        <textarea className="typed-text" value={text} onChange={handleAddText}></textarea>
-        <Keyboard 
-            handleAddText={handleAddText}
-            handleCaseChange={handleCaseChange}
-            handleCapsLock={handleCapsLock}
-            handleBackspace={handleBackspace}/>
-    </>
-  )
+    const queryScreenWidth = () => {
+        const width = window.innerWidth;
+        setWidth(width);
+    }
+
+    return (
+        <>
+            <textarea className="typed-text" value={text} onChange={handleAddText}></textarea>
+            {width > 768 ? (
+                <Keyboard 
+                    handleAddText={handleAddText}
+                    handleCaseChange={handleCaseChange}
+                    handleCapsLock={handleCapsLock}
+                    handleBackspace={handleBackspace}/>
+            ) : (
+                <MobileKeyboard
+                    handleAddText={handleAddText}
+                    handleCaseChange={handleCaseChange}
+                    handleCapsLock={handleCapsLock}
+                    handleBackspace={handleBackspace}/>
+            )}
+        </>
+    ) 
 }

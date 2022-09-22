@@ -53,16 +53,18 @@ header p {
     opacity: 100;
     justify-content: center;
     align-items: center;
-    width: 140px;
-    height: 129px;
-    border-radius: 5px;
-    transform: translateY(50%);
+    width: 120px;
+    height: 139px;
+    border-radius: 8px;
+    transform: translateY(100%);
     transition: all 0.5s;
+
 }
 .nav-link-container.collapse {
     opacity: 0;
     pointer-events: none;
     height: 40px;
+    transform: translateY(100%);
 }
 .nav-link-container.collapse .nav-link {
     margin: -15px;
@@ -77,28 +79,28 @@ header p {
     color: var(--off-white);
     text-transform: lowercase;
     text-decoration: none;
-    font-size: 150%;
+    font-size: 135%;
     text-shadow: 1px 2px 2px black;
     margin: 0px;
-    padding: 3px 0;
+    padding: 6px 0;
     background-color: var(--grey);
     border-top: 1px solid rgba(255, 255, 255, 0.493);
     border-bottom: 1px solid rgba(0, 0, 0, 0.24);
     transition: margin 500ms,
-    filter 200ms;
+    background-color 100ms;
 }
 .nav-link:hover {
     background-color: rgb(121, 119, 119);
 }
 #github {
     border-top: none;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 #contact {
     border-bottom: none;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 .fa-bars {
     transition: all 400ms;
