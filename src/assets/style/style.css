@@ -231,6 +231,10 @@ textarea:focus {
     }
 }
 @media screen and (max-width: 768px) {
+    .keyboard {
+        transform: none;
+        width: 100vw;
+    }
     .navbar {
         width: 100vw;
         justify-content: space-between;
@@ -286,16 +290,16 @@ textarea:focus {
     }
 
     .row {
-        width: 100%;
+        width: 100vw;
     }
     .key {
-        font-size: 3rem;
+        font-size: 2rem;
         font-weight: 700;
-        min-width: auto;
-        width: 45px;
+        min-width: 8%;
+        
         max-width: auto;
-        margin: 5px;
-        height: 65px;
+        margin: 3px;
+        height: 45px;
     }
     .backspace-key, .shift-key {
         margin: auto !important;
@@ -307,43 +311,44 @@ textarea:focus {
         justify-content: center;
         align-items: center;
         padding: 0;
-        border-radius: 20px;
+        border-radius: 15px;
+        transform: translateY(3px);
     }
     .shift-key {
-        transform: translateY(5px);
-        left: 7px;
-        width: 69px;
-
+        left: 5px;
+        width: 15%;
+        font-size: 2.2rem !important;
         display: flex;
         align-items: center;
     }
     .backspace-key {
-        font-size: 3rem !important;
-        width: 74px;
-        right: 3px;
+        font-size: 2.5rem !important;
+        width: 15%;
+        right: 5px;
         padding-right: 4px;
-        transform: translateY(-5px);
-        align-self: flex-end;
+
+
     }
     .spacebar-key {
         position: absolute;
         bottom: 0;
-        width: 300px;
-        height: 55px !important;
+        width: 50%;
+        height: 35px !important;
     }
     .spacebar-icon {
         width: 100%;
     }
     .pageswitcher-key {
         align-self: flex-start;
-        height: 55px;
-        width: 94px;
+        height: 35px;
+        width: 19%;
+        margin-left: 5px;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
         font-family: 'Poppins' !important;
-        font-size: 2rem;
+        font-size: 1.5rem;
         text-indent: 3px;
         font-weight: 100;
         letter-spacing: 6px;
@@ -352,11 +357,12 @@ textarea:focus {
         position: absolute;
         left: 0;
         font-family: 'Poppins' !important;
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         color:var(--grey);
         background-color: var(--off-white);
         font-weight: 100;
-        border-radius: 20px;
-        width: 84px;
+        border-radius: 10px;
+        width: 15%;
+        margin-left: 5px;
     }
 }
