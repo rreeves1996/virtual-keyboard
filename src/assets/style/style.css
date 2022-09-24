@@ -165,7 +165,7 @@ header p {
 }
 .backspace-key {
     font-size: 4rem !important;
-    width: 100px;
+    width: 100px !important;
     margin-right: -33px !important;
 }
 .capslock-key, .shift-key {
@@ -173,15 +173,16 @@ header p {
     font-weight: 900;
 }
 .capslock-key {
+    width: 66px !important;
     margin-left: -63px !important;
 }
 .shift-key {
-    width: 96px;
+    width: 96px !important;
     margin-left: -99px !important;
 }
 .spacebar-key {
     height: 65px !important;
-    width: 60%;
+    width: 60% !important;
 }
 .spacebar-icon {
     transform: rotate(90deg);
@@ -233,7 +234,7 @@ textarea:focus {
 @media screen and (max-width: 768px) {
     .keyboard {
         transform: none;
-        width: 100% !important;
+        width: 100%;
     }
     .navbar {
         width: 100vw;
@@ -265,8 +266,6 @@ textarea:focus {
     }
     .navbar-toggler {
         width: 42px;
-
-        /* display: flex; */
     }
     .nav-link-container {
         right: 17px;
@@ -296,10 +295,10 @@ textarea:focus {
         font-size: 2rem;
         font-weight: 700;
 
-        width: 8%;
+        width: 8.5%;
         padding: 0 !important;
         margin: 3px;
-        height: 45px;
+        height: 40px;
     }
     .backspace-key, .shift-key {
         margin: auto !important;
@@ -313,26 +312,24 @@ textarea:focus {
         padding: 0;
         border-radius: 15px;
         transform: translateY(3px);
+        width: 13.5% !important;
+        font-size: 2rem !important;
     }
     .shift-key {
-        left: 5px;
-        width: 15%;
-        font-size: 2.2rem !important;
+        left: 1%;
+
         display: flex;
         align-items: center;
     }
     .backspace-key {
-        font-size: 2.5rem !important;
-        width: 15%;
-        right: 5px;
-        padding-right: 4px;
 
-
+        right: 1%;
+        padding-right: 1% !important;
     }
     .spacebar-key {
         position: absolute;
         bottom: 0;
-        width: 50%;
+        width: 50% !important;
         height: 35px !important;
     }
     .spacebar-icon {
@@ -341,8 +338,8 @@ textarea:focus {
     .pageswitcher-key {
         align-self: flex-start;
         height: 35px;
-        width: 19%;
-        margin-left: 5px;
+        width: 19% !important;
+        margin-left: 1%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -362,7 +359,7 @@ textarea:focus {
         background-color: var(--off-white);
         font-weight: 100;
         border-radius: 10px;
-        width: 15%;
+        width: 15% !important;
         margin-left: 5px;
     }
 }
