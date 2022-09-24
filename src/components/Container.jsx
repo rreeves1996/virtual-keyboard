@@ -16,9 +16,9 @@ export default function App() {
           <code>Type anything using the virtual keyboard</code>
           <code>(or your own keyboard)</code>
         </header>
-        <TextArea>
-          <Keyboard />
-        </TextArea>
+        <TextArea />
+
+        
       </main>
     </>
   )

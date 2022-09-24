@@ -81,7 +81,6 @@ export default function TextArea() {
                 <MobileKeyboard
                     handleAddText={handleAddText}
                     handleCaseChange={handleCaseChange}
-                    handleCapsLock={handleCapsLock}
                     handleBackspace={handleBackspace}/>
             )}
         </>

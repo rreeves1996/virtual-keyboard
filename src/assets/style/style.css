@@ -3,8 +3,13 @@
     --off-white: #ececec;
     --grey: rgb(39, 38, 38);
 }
-
+html {
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
 body {
+    position: relative;
     background-color: var(--grey);
     color: #ececec;
     margin: 0;
@@ -14,6 +19,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100vw;
 }
 .navbar {
     display: flex;
@@ -223,5 +229,134 @@ textarea:focus {
 @media screen and (max-width: 968px) {
     .keyboard {
         transform: scale(0.75);
+    }
+}
+@media screen and (max-width: 768px) {
+    .navbar {
+        width: 100vw;
+        justify-content: space-between;
+    }
+    .navbar-toggler {
+        position: relative;
+    }
+    .navbar-header {
+        display: flex;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        height: 100%;
+    }
+    .navbar-header code {
+        font-size: 1.1rem;
+        position: absolute;
+        top: 25px;
+        height: 50%;
+    }
+    .navbar-header p {
+        position: absolute;
+        top: 40px;
+        font-size: .8rem;
+        opacity: 75%;
+    }
+    .navbar-toggler {
+        width: 42px;
+
+        /* display: flex; */
+    }
+    .nav-link-container {
+        right: 17px;
+        top: 105px;
+        transform: scale(1.5) !important;
+    }
+    .navbar-toggler, .fa-keyboard {
+        margin: 15px;
+    }
+    header {
+        width: 90%;
+    }
+    code:nth-child(2) {
+        display: none;
+    }
+
+    .typed-text {
+        width: 80%;
+        height: 150px;
+        font-size: 1.5rem;
+    }
+
+    .row {
+        width: 100%;
+    }
+    .key {
+        font-size: 3rem;
+        font-weight: 700;
+        min-width: auto;
+        width: 45px;
+        margin: 5px;
+        height: 65px;
+    }
+    .backspace-key, .shift-key {
+        margin: auto !important;
+        border: none;
+        color: var(--grey);
+        background-color: var(--off-white);
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        border-radius: 20px;
+    }
+    .shift-key {
+        transform: translateY(5px);
+        left: 7px;
+        width: 69px;
+
+        display: flex;
+        align-items: center;
+    }
+    .backspace-key {
+        font-size: 3rem !important;
+        width: 74px;
+        right: 3px;
+        padding-right: 4px;
+        transform: translateY(-5px);
+        align-self: flex-end;
+    }
+    .spacebar-key {
+        position: absolute;
+        bottom: 0;
+        width: 300px;
+        height: 55px !important;
+    }
+    .spacebar-icon {
+        width: 100%;
+    }
+    .pageswitcher-key {
+        align-self: flex-start;
+        height: 55px;
+        width: 94px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: 'Poppins' !important;
+        font-size: 2rem;
+        text-indent: 3px;
+        font-weight: 100;
+        letter-spacing: 6px;
+    }
+    .special-key {
+        position: absolute;
+        left: 0;
+        font-family: 'Poppins' !important;
+        font-size: 1.75rem;
+        color:var(--grey);
+        background-color: var(--off-white);
+        font-weight: 100;
+        border-radius: 20px;
+        width: 84px;
     }
 }
