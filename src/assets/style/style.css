@@ -193,7 +193,7 @@ header p {
     background-color: var(--grey);
     cursor: pointer;
     font-size: 5rem;
-    min-width: 60px;
+    width: 60px;
     height: 78px;
     margin: 3px;
     border: 1px solid var(--off-white);
@@ -233,7 +233,7 @@ textarea:focus {
 @media screen and (max-width: 768px) {
     .keyboard {
         transform: none;
-        width: 100vw;
+        width: 100% !important;
     }
     .navbar {
         width: 100vw;
@@ -295,9 +295,9 @@ textarea:focus {
     .key {
         font-size: 2rem;
         font-weight: 700;
-        min-width: none;
+
         width: 8%;
-        
+        padding: 0 !important;
         margin: 3px;
         height: 45px;
     }
