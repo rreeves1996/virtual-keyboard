@@ -295,9 +295,9 @@ textarea:focus {
     .key {
         font-size: 2rem;
         font-weight: 700;
-        min-width: 8%;
+        min-width: none;
+        width: 8%;
         
-        max-width: auto;
         margin: 3px;
         height: 45px;
     }
