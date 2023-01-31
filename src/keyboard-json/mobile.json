@@ -1,0 +1,7 @@
+{
+	"regchars": {
+		"rowone": ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+		"rowtwo": ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+		"rowthree": ["z", "x", "c", "v", "b", "n", "m"]
+	}
+}
