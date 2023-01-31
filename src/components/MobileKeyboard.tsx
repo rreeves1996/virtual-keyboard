@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../assets/style/style.css';
 const MOBILE_KEYBOARD = require('../keyboard-json/mobile.json');
 
@@ -17,6 +16,7 @@ export default function MobileKeyboard({
 	const [page, setPage] = useState('chars');
 	const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
 
+	console.log(regchars);
 	const shiftElement = (
 		<button className='key shift-key' onClick={() => handleCaseChange()}>
 			<i className='fa-solid fa-up-long'></i>
@@ -67,33 +67,6 @@ export default function MobileKeyboard({
 				break;
 		}
 	};
-
-	useEffect(() => {
-		const keyboard = document.querySelector('.mobile-keyboard');
-		const renderedRows: NodeListOf<HTMLElement> =
-			document.querySelectorAll('.row');
-		const backspaceKey = document.querySelectorAll('.backspace-key');
-		const shiftKey = document.querySelector('.shift-key');
-		const pageSwitcher = document.querySelector('.pageswitcher-key');
-		const specSwitcher = document.querySelector('.special-key');
-		const spacebar = document.querySelector('.spacebar-key');
-		switch (page) {
-			case 'chars':
-				renderedRows[2].append(backspaceKey);
-				renderedRows[2].prepend(shiftKey);
-				break;
-			case 'nums':
-				renderedRows[2].append(backspaceKey);
-				renderedRows[2].prepend(specSwitcher);
-				keyboard?.append(pageSwitcher);
-				keyboard?.append(spacebar);
-				break;
-			case 'spec':
-				return;
-			default:
-				break;
-		}
-	}, []);
 
 	const renderKeyboard = () => {
 		switch (page) {
