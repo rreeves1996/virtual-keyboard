@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import React, { useEffect, useState } from 'react';
 import '../assets/style/style.css';
+const MOBILE_KEYBOARD = require('../keyboard-json/mobile.json');
 
 interface MobileKeyboardProps {
 	handleAddText: (arg?: any) => void;
@@ -14,72 +15,42 @@ export default function MobileKeyboard({
 	handleCaseChange,
 }: MobileKeyboardProps) {
 	const [page, setPage] = useState('chars');
-
-	const mobileChars = `qwertyuiop asdfghjkl zxcvbnm`;
-	const mobileNumbers = `1234567890 -/:;()$&@ .,?!'"`;
-	const mobileSpecial = `~[]{}#%^* +=_|@<> .,?!'"`;
-	const mobileCharGroup = mobileChars.split(' ');
-	const mobileNumbersGroup = mobileNumbers.split(' ');
-	const mobileSpecialGroup = mobileSpecial.split(' ');
-	let charRows: string[] = [];
-	let numberRows: string[] = [];
-	let specialRows: string[] = [];
+	const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
 
 	const shiftElement = (
-		<>
-			<button className='key shift-key' onClick={() => handleCaseChange()}>
-				<i className='fa-solid fa-up-long'></i>
-			</button>
-		</>
+		<button className='key shift-key' onClick={() => handleCaseChange()}>
+			<i className='fa-solid fa-up-long'></i>
+		</button>
 	);
+
 	const spacebarElement = (
-		<>
-			<button className='key spacebar-key' onClick={() => handleAddText(' ')}>
-				<div className='spacebar-icon'>]</div>
-			</button>
-		</>
+		<button className='key spacebar-key' onClick={() => handleAddText(' ')}>
+			<div className='spacebar-icon'>]</div>
+		</button>
 	);
 	const backspaceElement = (
-		<>
-			<button className='key backspace-key' onClick={() => handleBackspace()}>
-				<i className='fa-solid fa-delete-left'></i>
-			</button>
-		</>
+		<button className='key backspace-key' onClick={() => handleBackspace()}>
+			<i className='fa-solid fa-delete-left'></i>
+		</button>
 	);
 	function pageSwitcherElement(page: any) {
 		return (
-			<>
-				<button
-					className='key pageswitcher-key'
-					onClick={() => handlePageSwitch(page)}>
-					<div className='pageswitcher-icon'>{page}</div>
-				</button>
-			</>
+			<button
+				className='key pageswitcher-key'
+				onClick={() => handlePageSwitch(page)}>
+				<div className='pageswitcher-icon'>{page}</div>
+			</button>
 		);
 	}
 	function subPageSwitcherElement(page: any) {
 		return (
-			<>
-				<button
-					className='key special-key'
-					onClick={() => handlePageSwitch(page)}>
-					<div className='pageswitcher-icon'>{page}</div>
-				</button>
-			</>
+			<button
+				className='key special-key'
+				onClick={() => handlePageSwitch(page)}>
+				<div className='pageswitcher-icon'>{page}</div>
+			</button>
 		);
 	}
-	useEffect(() => {}, []);
-	mobileCharGroup.forEach((row, index) => {
-		charRows[index] = row.split('');
-	});
-
-	mobileNumbersGroup.forEach((row, index) => {
-		numberRows[index] = row.split('');
-	});
-
-	mobileSpecialGroup.forEach((row, index) => {
-		specialRows[index] = row.split('');
-	});
 
 	const handlePageSwitch = (page: string) => {
 		switch (page) {
@@ -98,13 +69,14 @@ export default function MobileKeyboard({
 	};
 
 	useEffect(() => {
-		let keyboard = document.querySelector('.mobile-keyboard');
-		let renderedRows = document.querySelectorAll('.row');
-		let backspaceKey = document.querySelector('.backspace-key');
-		let shiftKey = document.querySelector('.shift-key');
-		let pageSwitcher = document.querySelector('.pageswitcher-key');
-		let specSwitcher = document.querySelector('.special-key');
-		let spacebar = document.querySelector('.spacebar-key');
+		const keyboard = document.querySelector('.mobile-keyboard');
+		const renderedRows: NodeListOf<HTMLElement> =
+			document.querySelectorAll('.row');
+		const backspaceKey = document.querySelectorAll('.backspace-key');
+		const shiftKey = document.querySelector('.shift-key');
+		const pageSwitcher = document.querySelector('.pageswitcher-key');
+		const specSwitcher = document.querySelector('.special-key');
+		const spacebar = document.querySelector('.spacebar-key');
 		switch (page) {
 			case 'chars':
 				renderedRows[2].append(backspaceKey);
@@ -113,15 +85,15 @@ export default function MobileKeyboard({
 			case 'nums':
 				renderedRows[2].append(backspaceKey);
 				renderedRows[2].prepend(specSwitcher);
-				keyboard.append(pageSwitcher);
-				keyboard.append(spacebar);
+				keyboard?.append(pageSwitcher);
+				keyboard?.append(spacebar);
 				break;
 			case 'spec':
 				return;
 			default:
 				break;
 		}
-	});
+	}, []);
 
 	const renderKeyboard = () => {
 		switch (page) {
@@ -138,19 +110,20 @@ export default function MobileKeyboard({
 
 	const chars = (
 		<>
-			{charRows.map((row) => (
+			{regchars.map((row: any, index: number) => (
 				<div className='row'>
-					{row.map((key) => (
+					{index === 2 ? shiftElement : <></>}
+					{row.map((key: any) => (
 						<button
 							className='key lowercase-key'
 							onClick={() => handleAddText(key)}>
 							{key}
 						</button>
 					))}
+					{index === 2 ? backspaceElement : <></>}
 				</div>
 			))}
-			{backspaceElement}
-			{shiftElement}
+
 			{pageSwitcherElement('123')}
 			{spacebarElement}
 		</>
@@ -158,16 +131,18 @@ export default function MobileKeyboard({
 
 	const nums = (
 		<>
-			{numberRows.map((row) => (
+			{numbers.map((row: any, index: number) => (
 				<div className='row'>
+					{index === 2 ? shiftElement : <></>}
 					{row.map((key: any) => (
 						<button className='key' onClick={() => handleAddText(key)}>
 							{key}
 						</button>
 					))}
+					{index === 2 ? backspaceElement : <></>}
 				</div>
 			))}
-			{backspaceElement}
+
 			{subPageSwitcherElement('#+=')}
 			{pageSwitcherElement('abc')}
 			{spacebarElement}
@@ -176,16 +151,17 @@ export default function MobileKeyboard({
 
 	const spec = (
 		<>
-			{specialRows.map((row) => (
+			{specchars.map((row: any, index: number) => (
 				<div className='row'>
-					{row.map((key) => (
+					{row.map((key: any) => (
 						<button className='key' onClick={() => handleAddText(key)}>
 							{key}
 						</button>
 					))}
+					{index === 2 ? backspaceElement : <></>}
 				</div>
 			))}
-			{backspaceElement}
+
 			{subPageSwitcherElement('123')}
 			{pageSwitcherElement('abc')}
 			{spacebarElement}

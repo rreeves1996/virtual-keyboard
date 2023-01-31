@@ -1,6 +1,5 @@
-import Container from './components/Container';
-import Navbar from './Navbar';
-import TextArea from './TextArea';
+import Navbar from './components/Navbar';
+import TextArea from './components/TextArea';
 
 export default function App() {
 	return (
