@@ -41,7 +41,6 @@ export default function Keyboard({
 	return (
 		<>
 			<div className='keyboard'>
-				{backspaceElement}
 				{regchars.map((row: any, index: number) => (
 					<div className='row'>
 						{index === 2 ? capslockElement : <></>}
@@ -57,8 +56,6 @@ export default function Keyboard({
 						{index === 0 ? backspaceElement : <></>}
 					</div>
 				))}
-				{capslockElement}
-				{shiftElement}
 				{spacebarElement}
 			</div>
 		</>

@@ -106,7 +106,7 @@ export default function MobileKeyboard({
 		<>
 			{numbers.map((row: any, index: number) => (
 				<div className='row'>
-					{index === 2 ? shiftElement : <></>}
+					{index === 2 ? subPageSwitcherElement('#+=') : <></>}
 					{row.map((key: any) => (
 						<button className='key' onClick={() => handleAddText(key)}>
 							{key}
@@ -116,7 +116,6 @@ export default function MobileKeyboard({
 				</div>
 			))}
 
-			{subPageSwitcherElement('#+=')}
 			{pageSwitcherElement('abc')}
 			{spacebarElement}
 		</>
@@ -126,6 +125,8 @@ export default function MobileKeyboard({
 		<>
 			{specchars.map((row: any, index: number) => (
 				<div className='row'>
+					{index === 2 ? subPageSwitcherElement('123') : <></>}
+
 					{row.map((key: any) => (
 						<button className='key' onClick={() => handleAddText(key)}>
 							{key}
@@ -135,7 +136,6 @@ export default function MobileKeyboard({
 				</div>
 			))}
 
-			{subPageSwitcherElement('123')}
 			{pageSwitcherElement('abc')}
 			{spacebarElement}
 		</>
