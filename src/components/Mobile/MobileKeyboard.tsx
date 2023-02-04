@@ -13,13 +13,9 @@ interface SpaceBarKeyProps {
 	handleAddText: (arg?: any) => void;
 }
 
-interface MobileKeyboardProps {
-	handleAddText: (arg?: any) => void;
-	handleBackspace: () => void;
-	handleCaseChange: () => void;
-}
+type MobileKeyboardProps = ShiftKeyProps & BackSpaceKeyProps & SpaceBarKeyProps;
 
-export function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
+function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
 	return (
 		<button className='key shift-key' onClick={() => handleCaseChange()}>
 			<i className='fa-solid fa-up-long'></i>
@@ -27,7 +23,7 @@ export function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
 	);
 }
 
-export function BackSpaceKey({ handleBackspace }: BackSpaceKeyProps) {
+function BackSpaceKey({ handleBackspace }: BackSpaceKeyProps) {
 	return (
 		<button className='key backspace-key' onClick={() => handleBackspace()}>
 			<i className='fa-solid fa-delete-left'></i>
@@ -35,7 +31,7 @@ export function BackSpaceKey({ handleBackspace }: BackSpaceKeyProps) {
 	);
 }
 
-export function SpaceBarKey({ handleAddText }: SpaceBarKeyProps) {
+function SpaceBarKey({ handleAddText }: SpaceBarKeyProps) {
 	return (
 		<button className='key spacebar-key' onClick={() => handleAddText(' ')}>
 			<div className='spacebar-icon'>]</div>
