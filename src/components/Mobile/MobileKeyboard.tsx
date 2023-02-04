@@ -139,7 +139,7 @@ export default function MobileKeyboard({
 		</>
 	);
 
-	const handlePageSwitch = (page: string) => {
+	const handlePageSwitch = (page: Required<string>) => {
 		switch (page) {
 			case '123': {
 				setPage('nums');
