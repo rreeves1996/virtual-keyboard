@@ -13,6 +13,11 @@ interface SpaceBarKeyProps {
 	handleAddText: (arg?: any) => void;
 }
 
+interface KeyboardSwitcherProps {
+	keyboard: string;
+	handleChangeKeyboard: (arg: string) => void;
+}
+
 type MobileKeyboardProps = ShiftKeyProps & BackSpaceKeyProps & SpaceBarKeyProps;
 
 function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
@@ -39,6 +44,32 @@ function SpaceBarKey({ handleAddText }: SpaceBarKeyProps) {
 	);
 }
 
+function KeyboardSwitcher({
+	keyboard,
+	handleChangeKeyboard,
+}: KeyboardSwitcherProps) {
+	return (
+		<button
+			className='key pageswitcher-key'
+			onClick={() => handleChangeKeyboard(keyboard)}>
+			<div className='pageswitcher-icon'>{keyboard}</div>
+		</button>
+	);
+}
+
+function SecondaryKeyboardSwitcher({
+	keyboard,
+	handleChangeKeyboard,
+}: KeyboardSwitcherProps) {
+	return (
+		<button
+			className='key special-key'
+			onClick={() => handleChangeKeyboard(keyboard)}>
+			<div className='pageswitcher-icon'>{keyboard}</div>
+		</button>
+	);
+}
+
 export default function MobileKeyboard({
 	handleAddText,
 	handleBackspace,
@@ -47,95 +78,7 @@ export default function MobileKeyboard({
 	const [page, setPage] = useState('chars');
 	const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
 
-	function pageSwitcherElement(page: any) {
-		return (
-			<button
-				className='key pageswitcher-key'
-				onClick={() => handlePageSwitch(page)}>
-				<div className='pageswitcher-icon'>{page}</div>
-			</button>
-		);
-	}
-
-	function subPageSwitcherElement(page: any) {
-		return (
-			<button
-				className='key special-key'
-				onClick={() => handlePageSwitch(page)}>
-				<div className='pageswitcher-icon'>{page}</div>
-			</button>
-		);
-	}
-
-	const chars = (
-		<>
-			{regchars.map((row: any, index: number) => (
-				<div className='row'>
-					{index === 2 ? (
-						<ShiftKey handleCaseChange={handleCaseChange} />
-					) : null}
-					{row.map((key: any) => (
-						<button
-							className='key lowercase-key'
-							onClick={() => handleAddText(key)}>
-							{key}
-						</button>
-					))}
-					{index === 2 ? (
-						<BackSpaceKey handleBackspace={handleBackspace} />
-					) : null}
-				</div>
-			))}
-
-			{pageSwitcherElement('123')}
-			<SpaceBarKey handleAddText={handleAddText} />
-		</>
-	);
-
-	const nums = (
-		<>
-			{numbers.map((row: any, index: number) => (
-				<div className='row'>
-					{index === 2 ? subPageSwitcherElement('#+=') : <></>}
-					{row.map((key: any) => (
-						<button className='key' onClick={() => handleAddText(key)}>
-							{key}
-						</button>
-					))}
-					{index === 2 ? (
-						<BackSpaceKey handleBackspace={handleBackspace} />
-					) : null}
-				</div>
-			))}
-
-			{pageSwitcherElement('abc')}
-			<SpaceBarKey handleAddText={handleAddText} />
-		</>
-	);
-
-	const spec = (
-		<>
-			{specchars.map((row: any, index: number) => (
-				<div className='row'>
-					{index === 2 ? subPageSwitcherElement('123') : <></>}
-
-					{row.map((key: any) => (
-						<button className='key' onClick={() => handleAddText(key)}>
-							{key}
-						</button>
-					))}
-					{index === 2 ? (
-						<BackSpaceKey handleBackspace={handleBackspace} />
-					) : null}
-				</div>
-			))}
-
-			{pageSwitcherElement('abc')}
-			<SpaceBarKey handleAddText={handleAddText} />
-		</>
-	);
-
-	const handlePageSwitch = (page: Required<string>) => {
+	const handleChangeKeyboard = (page: Required<string>) => {
 		switch (page) {
 			case '123': {
 				setPage('nums');
@@ -154,6 +97,101 @@ export default function MobileKeyboard({
 			}
 		}
 	};
+
+	const chars = (
+		<>
+			{regchars.map((row: any, index: number) => (
+				<div className='row'>
+					{index === 2 ? (
+						<ShiftKey handleCaseChange={handleCaseChange} />
+					) : null}
+
+					{row.map((key: any) => (
+						<button
+							className='key lowercase-key'
+							onClick={() => handleAddText(key)}>
+							{key}
+						</button>
+					))}
+
+					{index === 2 ? (
+						<BackSpaceKey handleBackspace={handleBackspace} />
+					) : null}
+				</div>
+			))}
+
+			<KeyboardSwitcher
+				keyboard='123'
+				handleChangeKeyboard={handleChangeKeyboard}
+			/>
+
+			<SpaceBarKey handleAddText={handleAddText} />
+		</>
+	);
+
+	const nums = (
+		<>
+			{numbers.map((row: any, index: number) => (
+				<div className='row'>
+					{index === 2 ? (
+						<SecondaryKeyboardSwitcher
+							keyboard={'#+='}
+							handleChangeKeyboard={handleChangeKeyboard}
+						/>
+					) : null}
+
+					{row.map((key: any) => (
+						<button className='key' onClick={() => handleAddText(key)}>
+							{key}
+						</button>
+					))}
+
+					{index === 2 ? (
+						<BackSpaceKey handleBackspace={handleBackspace} />
+					) : null}
+				</div>
+			))}
+
+			<KeyboardSwitcher
+				keyboard='abc'
+				handleChangeKeyboard={handleChangeKeyboard}
+			/>
+
+			<SpaceBarKey handleAddText={handleAddText} />
+		</>
+	);
+
+	const spec = (
+		<>
+			{specchars.map((row: any, index: number) => (
+				<div className='row'>
+					{index === 2 ? (
+						<SecondaryKeyboardSwitcher
+							keyboard={'#+='}
+							handleChangeKeyboard={handleChangeKeyboard}
+						/>
+					) : null}
+
+					{row.map((key: any) => (
+						<button className='key' onClick={() => handleAddText(key)}>
+							{key}
+						</button>
+					))}
+
+					{index === 2 ? (
+						<BackSpaceKey handleBackspace={handleBackspace} />
+					) : null}
+				</div>
+			))}
+
+			<KeyboardSwitcher
+				keyboard='abc'
+				handleChangeKeyboard={handleChangeKeyboard}
+			/>
+
+			<SpaceBarKey handleAddText={handleAddText} />
+		</>
+	);
 
 	const renderKeyboard = () => {
 		switch (page) {
