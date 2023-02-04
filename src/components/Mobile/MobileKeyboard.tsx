@@ -1,11 +1,46 @@
 import React, { useState } from 'react';
-import '../assets/style/style.css';
-const MOBILE_KEYBOARD = require('../keyboard-json/mobile.json');
+const MOBILE_KEYBOARD = require('../../keyboard-json/mobile.json');
+
+interface ShiftKeyProps {
+	handleCaseChange: () => void;
+}
+
+interface BackSpaceKeyProps {
+	handleBackspace: () => void;
+}
+
+interface SpaceBarKeyProps {
+	handleAddText: (arg?: any) => void;
+}
 
 interface MobileKeyboardProps {
 	handleAddText: (arg?: any) => void;
 	handleBackspace: () => void;
 	handleCaseChange: () => void;
+}
+
+export function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
+	return (
+		<button className='key shift-key' onClick={() => handleCaseChange()}>
+			<i className='fa-solid fa-up-long'></i>
+		</button>
+	);
+}
+
+export function BackSpaceKey({ handleBackspace }: BackSpaceKeyProps) {
+	return (
+		<button className='key backspace-key' onClick={() => handleBackspace()}>
+			<i className='fa-solid fa-delete-left'></i>
+		</button>
+	);
+}
+
+export function SpaceBarKey({ handleAddText }: SpaceBarKeyProps) {
+	return (
+		<button className='key spacebar-key' onClick={() => handleAddText(' ')}>
+			<div className='spacebar-icon'>]</div>
+		</button>
+	);
 }
 
 export default function MobileKeyboard({
@@ -16,23 +51,6 @@ export default function MobileKeyboard({
 	const [page, setPage] = useState('chars');
 	const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
 
-	console.log(regchars);
-	const shiftElement = (
-		<button className='key shift-key' onClick={() => handleCaseChange()}>
-			<i className='fa-solid fa-up-long'></i>
-		</button>
-	);
-
-	const spacebarElement = (
-		<button className='key spacebar-key' onClick={() => handleAddText(' ')}>
-			<div className='spacebar-icon'>]</div>
-		</button>
-	);
-	const backspaceElement = (
-		<button className='key backspace-key' onClick={() => handleBackspace()}>
-			<i className='fa-solid fa-delete-left'></i>
-		</button>
-	);
 	function pageSwitcherElement(page: any) {
 		return (
 			<button
@@ -42,6 +60,7 @@ export default function MobileKeyboard({
 			</button>
 		);
 	}
+
 	function subPageSwitcherElement(page: any) {
 		return (
 			<button
@@ -52,40 +71,13 @@ export default function MobileKeyboard({
 		);
 	}
 
-	const handlePageSwitch = (page: string) => {
-		switch (page) {
-			case '123':
-				setPage('nums');
-				break;
-			case 'abc':
-				setPage('chars');
-				break;
-			case '#+=':
-				setPage('spec');
-				break;
-			default:
-				break;
-		}
-	};
-
-	const renderKeyboard = () => {
-		switch (page) {
-			case 'chars':
-				return chars;
-			case 'nums':
-				return nums;
-			case 'spec':
-				return spec;
-			default:
-				break;
-		}
-	};
-
 	const chars = (
 		<>
 			{regchars.map((row: any, index: number) => (
 				<div className='row'>
-					{index === 2 ? shiftElement : <></>}
+					{index === 2 ? (
+						<ShiftKey handleCaseChange={handleCaseChange} />
+					) : null}
 					{row.map((key: any) => (
 						<button
 							className='key lowercase-key'
@@ -93,12 +85,14 @@ export default function MobileKeyboard({
 							{key}
 						</button>
 					))}
-					{index === 2 ? backspaceElement : <></>}
+					{index === 2 ? (
+						<BackSpaceKey handleBackspace={handleBackspace} />
+					) : null}
 				</div>
 			))}
 
 			{pageSwitcherElement('123')}
-			{spacebarElement}
+			<SpaceBarKey handleAddText={handleAddText} />
 		</>
 	);
 
@@ -112,12 +106,14 @@ export default function MobileKeyboard({
 							{key}
 						</button>
 					))}
-					{index === 2 ? backspaceElement : <></>}
+					{index === 2 ? (
+						<BackSpaceKey handleBackspace={handleBackspace} />
+					) : null}
 				</div>
 			))}
 
 			{pageSwitcherElement('abc')}
-			{spacebarElement}
+			<SpaceBarKey handleAddText={handleAddText} />
 		</>
 	);
 
@@ -132,14 +128,53 @@ export default function MobileKeyboard({
 							{key}
 						</button>
 					))}
-					{index === 2 ? backspaceElement : <></>}
+					{index === 2 ? (
+						<BackSpaceKey handleBackspace={handleBackspace} />
+					) : null}
 				</div>
 			))}
 
 			{pageSwitcherElement('abc')}
-			{spacebarElement}
+			<SpaceBarKey handleAddText={handleAddText} />
 		</>
 	);
+
+	const handlePageSwitch = (page: string) => {
+		switch (page) {
+			case '123': {
+				setPage('nums');
+				break;
+			}
+			case 'abc': {
+				setPage('chars');
+				break;
+			}
+			case '#+=': {
+				setPage('spec');
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+	};
+
+	const renderKeyboard = () => {
+		switch (page) {
+			case 'chars': {
+				return chars;
+			}
+			case 'nums': {
+				return nums;
+			}
+			case 'spec': {
+				return spec;
+			}
+			default: {
+				break;
+			}
+		}
+	};
 
 	return <div className='keyboard mobile-keyboard'>{renderKeyboard()}</div>;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Keyboard from './Keyboard';
-import MobileKeyboard from './MobileKeyboard';
+import Keyboard from './Desktop/Keyboard';
+import MobileKeyboard from './Mobile/MobileKeyboard';
 import '../assets/style/style.css';
 
 export default function TextArea() {

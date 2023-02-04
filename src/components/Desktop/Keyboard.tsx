@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import '../assets/style/style.css';
-const KEYBOARD = require('../keyboard-json/desktop.json');
+const KEYBOARD = require('../../keyboard-json/desktop.json');
 
 interface KeyboardProps {
 	handleAddText: (arg?: any) => void;
