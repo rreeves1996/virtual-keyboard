@@ -199,26 +199,6 @@ export default function MobileKeyboardContainer({
 }: MobileKeyboardContainerProps) {
 	const [keyboard, setKeyboard] = useState('chars');
 
-	const handleChangeKeyboard = (keyboard: Required<string>) => {
-		switch (keyboard) {
-			case '123': {
-				setKeyboard('nums');
-				break;
-			}
-			case 'abc': {
-				setKeyboard('chars');
-				break;
-			}
-			case '#+=': {
-				setKeyboard('spec');
-				break;
-			}
-			default: {
-				break;
-			}
-		}
-	};
-
 	const renderKeyboard = () => {
 		switch (keyboard) {
 			case 'chars': {

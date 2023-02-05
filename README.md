@@ -44,6 +44,7 @@ Step one - integrate TypeScript
 Step two - from large scope to small, get broad perspective on if the ways I went about creating the program can work, or if I need to start from scratch in certain areas
 Step three - clean up keyboard arrays by putting the data in external json files
 Step four - clean up messy useEffects that I used to cheat formatting (originally, I wanted to keep the code clean, so I wanted to render the key keys by mapping through arrays of strings with the characters being the individual array items. However, this became a challenege when I wanted certain special keys on the same rows as these character maps. To workaround this, I previously had put in useEffects that would prepend/append the special keys on pageload - in my junior brain this was a good solution, as I could continue to use my maps. I overcame this "workaround" by simply using an index, and conditional rendering based on the index.)
+Step five - reorganize messy JSX by dividing components up more (i.e. components for every keyboard layout)
 
 ## Contact
 
