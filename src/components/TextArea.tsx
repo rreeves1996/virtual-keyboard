@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Keyboard from './Desktop/Keyboard';
-import MobileKeyboard from './Mobile/MobileKeyboard';
-import '../assets/style/style.css';
+import MobileKeyboardContainer from './Mobile/MobileKeyboard';
 
 export default function TextArea() {
 	const [text, addText] = useState('');
@@ -79,7 +78,7 @@ export default function TextArea() {
 					handleBackspace={handleBackspace}
 				/>
 			) : (
-				<MobileKeyboard
+				<MobileKeyboardContainer
 					handleAddText={handleAddText}
 					handleCaseChange={handleCaseChange}
 					handleBackspace={handleBackspace}

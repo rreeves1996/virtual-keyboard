@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 const MOBILE_KEYBOARD = require('../../keyboard-json/mobile.json');
+const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
 
 interface ShiftKeyProps {
 	handleCaseChange: () => void;
@@ -13,17 +14,32 @@ interface SpaceBarKeyProps {
 	handleAddText: (arg?: any) => void;
 }
 
+type MobileKeyboardContainerProps = ShiftKeyProps &
+	BackSpaceKeyProps &
+	SpaceBarKeyProps;
+
 interface KeyboardSwitcherProps {
 	keyboard: string;
-	handleChangeKeyboard: (arg: string) => void;
+	setKeyboard: (arg: string) => void;
 }
 
-type MobileKeyboardProps = ShiftKeyProps & BackSpaceKeyProps & SpaceBarKeyProps;
+interface RegularKeyboardLayoutProps
+	extends ShiftKeyProps,
+		BackSpaceKeyProps,
+		SpaceBarKeyProps {
+	setKeyboard: (arg: string) => void;
+}
+
+interface SecondaryKeyboardLayoutProps
+	extends BackSpaceKeyProps,
+		SpaceBarKeyProps {
+	setKeyboard: (arg: string) => void;
+}
 
 function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
 	return (
 		<button className='key shift-key' onClick={() => handleCaseChange()}>
-			<i className='fa-solid fa-up-long'></i>
+			<i className='fa-solid fa-up-long' />
 		</button>
 	);
 }
@@ -31,7 +47,7 @@ function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
 function BackSpaceKey({ handleBackspace }: BackSpaceKeyProps) {
 	return (
 		<button className='key backspace-key' onClick={() => handleBackspace()}>
-			<i className='fa-solid fa-delete-left'></i>
+			<i className='fa-solid fa-delete-left' />
 		</button>
 	);
 }
@@ -44,14 +60,13 @@ function SpaceBarKey({ handleAddText }: SpaceBarKeyProps) {
 	);
 }
 
-function KeyboardSwitcher({
-	keyboard,
-	handleChangeKeyboard,
-}: KeyboardSwitcherProps) {
+function KeyboardSwitcher({ keyboard, setKeyboard }: KeyboardSwitcherProps) {
 	return (
 		<button
 			className='key pageswitcher-key'
-			onClick={() => handleChangeKeyboard(keyboard)}>
+			onClick={() =>
+				keyboard === 'abc' ? setKeyboard('chars') : setKeyboard('nums')
+			}>
 			<div className='pageswitcher-icon'>{keyboard}</div>
 		</button>
 	);
@@ -59,46 +74,26 @@ function KeyboardSwitcher({
 
 function SecondaryKeyboardSwitcher({
 	keyboard,
-	handleChangeKeyboard,
+	setKeyboard,
 }: KeyboardSwitcherProps) {
 	return (
 		<button
 			className='key special-key'
-			onClick={() => handleChangeKeyboard(keyboard)}>
+			onClick={() =>
+				keyboard === '123' ? setKeyboard('nums') : setKeyboard('spec')
+			}>
 			<div className='pageswitcher-icon'>{keyboard}</div>
 		</button>
 	);
 }
 
-export default function MobileKeyboard({
+function RegularKeyboard({
+	handleCaseChange,
 	handleAddText,
 	handleBackspace,
-	handleCaseChange,
-}: MobileKeyboardProps) {
-	const [page, setPage] = useState('chars');
-	const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
-
-	const handleChangeKeyboard = (page: Required<string>) => {
-		switch (page) {
-			case '123': {
-				setPage('nums');
-				break;
-			}
-			case 'abc': {
-				setPage('chars');
-				break;
-			}
-			case '#+=': {
-				setPage('spec');
-				break;
-			}
-			default: {
-				break;
-			}
-		}
-	};
-
-	const chars = (
+	setKeyboard,
+}: RegularKeyboardLayoutProps) {
+	return (
 		<>
 			{regchars.map((row: any, index: number) => (
 				<div className='row'>
@@ -120,23 +115,26 @@ export default function MobileKeyboard({
 				</div>
 			))}
 
-			<KeyboardSwitcher
-				keyboard='123'
-				handleChangeKeyboard={handleChangeKeyboard}
-			/>
+			<KeyboardSwitcher keyboard='123' setKeyboard={setKeyboard} />
 
 			<SpaceBarKey handleAddText={handleAddText} />
 		</>
 	);
+}
 
-	const nums = (
+function NumberKeyboard({
+	handleAddText,
+	handleBackspace,
+	setKeyboard,
+}: SecondaryKeyboardLayoutProps) {
+	return (
 		<>
 			{numbers.map((row: any, index: number) => (
 				<div className='row'>
 					{index === 2 ? (
 						<SecondaryKeyboardSwitcher
 							keyboard={'#+='}
-							handleChangeKeyboard={handleChangeKeyboard}
+							setKeyboard={setKeyboard}
 						/>
 					) : null}
 
@@ -152,23 +150,26 @@ export default function MobileKeyboard({
 				</div>
 			))}
 
-			<KeyboardSwitcher
-				keyboard='abc'
-				handleChangeKeyboard={handleChangeKeyboard}
-			/>
+			<KeyboardSwitcher keyboard='abc' setKeyboard={setKeyboard} />
 
 			<SpaceBarKey handleAddText={handleAddText} />
 		</>
 	);
+}
 
-	const spec = (
+function SpecialCharKeyboard({
+	handleAddText,
+	handleBackspace,
+	setKeyboard,
+}: SecondaryKeyboardLayoutProps) {
+	return (
 		<>
 			{specchars.map((row: any, index: number) => (
 				<div className='row'>
 					{index === 2 ? (
 						<SecondaryKeyboardSwitcher
-							keyboard={'#+='}
-							handleChangeKeyboard={handleChangeKeyboard}
+							keyboard={'123'}
+							setKeyboard={setKeyboard}
 						/>
 					) : null}
 
@@ -184,25 +185,69 @@ export default function MobileKeyboard({
 				</div>
 			))}
 
-			<KeyboardSwitcher
-				keyboard='abc'
-				handleChangeKeyboard={handleChangeKeyboard}
-			/>
+			<KeyboardSwitcher keyboard='abc' setKeyboard={setKeyboard} />
 
 			<SpaceBarKey handleAddText={handleAddText} />
 		</>
 	);
+}
+
+export default function MobileKeyboardContainer({
+	handleAddText,
+	handleBackspace,
+	handleCaseChange,
+}: MobileKeyboardContainerProps) {
+	const [keyboard, setKeyboard] = useState('chars');
+
+	const handleChangeKeyboard = (keyboard: Required<string>) => {
+		switch (keyboard) {
+			case '123': {
+				setKeyboard('nums');
+				break;
+			}
+			case 'abc': {
+				setKeyboard('chars');
+				break;
+			}
+			case '#+=': {
+				setKeyboard('spec');
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+	};
 
 	const renderKeyboard = () => {
-		switch (page) {
+		switch (keyboard) {
 			case 'chars': {
-				return chars;
+				return (
+					<RegularKeyboard
+						handleCaseChange={handleCaseChange}
+						handleAddText={handleAddText}
+						handleBackspace={handleBackspace}
+						setKeyboard={setKeyboard}
+					/>
+				);
 			}
 			case 'nums': {
-				return nums;
+				return (
+					<NumberKeyboard
+						handleAddText={handleAddText}
+						handleBackspace={handleBackspace}
+						setKeyboard={setKeyboard}
+					/>
+				);
 			}
 			case 'spec': {
-				return spec;
+				return (
+					<SpecialCharKeyboard
+						handleAddText={handleAddText}
+						handleBackspace={handleBackspace}
+						setKeyboard={setKeyboard}
+					/>
+				);
 			}
 			default: {
 				break;
