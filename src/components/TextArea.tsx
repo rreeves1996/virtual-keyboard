@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Keyboard from './Desktop/Keyboard';
+import Keyboard from './Desktop/DesktopKeyboard';
 import MobileKeyboardContainer from './Mobile/MobileKeyboard';
 
 export default function TextArea() {

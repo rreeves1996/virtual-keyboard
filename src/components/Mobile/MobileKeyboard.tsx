@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
+import {
+	ShiftKeyProps,
+	BackSpaceKeyProps,
+	SpaceBarKeyProps,
+	KeyProps,
+} from '../../interfaces/interfaces';
 const MOBILE_KEYBOARD = require('../../keyboard-json/mobile.json');
 const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
-
-interface ShiftKeyProps {
-	handleCaseChange: () => void;
-}
-
-interface BackSpaceKeyProps {
-	handleBackspace: () => void;
-}
-
-interface SpaceBarKeyProps {
-	handleAddText: (arg?: any) => void;
-}
 
 type MobileKeyboardContainerProps = ShiftKeyProps &
 	BackSpaceKeyProps &
@@ -34,6 +28,16 @@ interface SecondaryKeyboardLayoutProps
 	extends BackSpaceKeyProps,
 		SpaceBarKeyProps {
 	setKeyboard: (arg: string) => void;
+}
+
+function Key({ children, handleAddText }: KeyProps) {
+	return (
+		<button
+			className='key lowercase-key'
+			onClick={() => handleAddText(children)}>
+			{children}
+		</button>
+	);
 }
 
 function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
@@ -102,11 +106,7 @@ function RegularKeyboard({
 					) : null}
 
 					{row.map((key: any) => (
-						<button
-							className='key lowercase-key'
-							onClick={() => handleAddText(key)}>
-							{key}
-						</button>
+						<Key handleAddText={handleAddText}>{key}</Key>
 					))}
 
 					{index === 2 ? (
@@ -139,9 +139,7 @@ function NumberKeyboard({
 					) : null}
 
 					{row.map((key: any) => (
-						<button className='key' onClick={() => handleAddText(key)}>
-							{key}
-						</button>
+						<Key handleAddText={handleAddText}>{key}</Key>
 					))}
 
 					{index === 2 ? (
@@ -174,9 +172,7 @@ function SpecialCharKeyboard({
 					) : null}
 
 					{row.map((key: any) => (
-						<button className='key' onClick={() => handleAddText(key)}>
-							{key}
-						</button>
+						<Key handleAddText={handleAddText}>{key}</Key>
 					))}
 
 					{index === 2 ? (
