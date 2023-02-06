@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
 	ShiftKeyProps,
 	BackSpaceKeyProps,
@@ -55,7 +55,7 @@ function CapsLockKey({ handleCapsLock }: CapsLockKeyProps) {
 	);
 }
 
-export default function Keyboard({
+export default function DesktopKeyboardContainer({
 	handleAddText,
 	handleBackspace,
 	handleCapsLock,
