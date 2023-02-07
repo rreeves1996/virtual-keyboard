@@ -13,7 +13,7 @@
     ·
     <a href="https://github.com/rreeves1996/virtual-keyboard/features">Inquire About Features</a>
     <br />
-    <a href='https://rreeves-virtual-keyboard.herokuapp.com/'><h2>Heroku Deployment</h2></a>
+    <a href='https://rreeves-virtual-keyboard.herokuapp.com/'>Heroku Deployment</a>
   </p>
 </div>
 
