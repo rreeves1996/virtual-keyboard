@@ -5,7 +5,7 @@ export default function Navbar() {
 
 	return (
 		<nav className='navbar'>
-			<i className='fa-regular fa-keyboard'></i>
+			<i className='fa-regular fa-keyboard' />
 			<div className='navbar-header'>
 				<code>React.js Virtual Keyboard</code>
 				<p>created by Ryan Reeves</p>
@@ -13,19 +13,22 @@ export default function Navbar() {
 			<div
 				className={collapsed ? 'navbar-toggler' : 'navbar-toggler open'}
 				onClick={() => toggleCollapse(!collapsed)}>
-				<i className='fa-solid fa-bars'></i>
-				<i className='fa-solid fa-chevron-down navbar-hover-arrow'></i>
+				<i className='fa-solid fa-bars' />
+				<i className='fa-solid fa-chevron-down navbar-hover-arrow' />
 				<div
 					className={
 						!collapsed ? 'nav-link-container' : 'nav-link-container collapse'
 					}>
-					<a href='#' className='nav-link' id='github'>
+					<a
+						href='https://github.com/rreeves1996'
+						className='nav-link'
+						id='github'>
 						Repo Link
 					</a>
 					<a href='#' className='nav-link' id='about'>
 						About
 					</a>
-					<a href='#' className='nav-link' id='contact'>
+					<a href='https://rreeves.dev/' className='nav-link' id='contact'>
 						Contact
 					</a>
 				</div>

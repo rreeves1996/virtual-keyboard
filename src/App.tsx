@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import './assets/style/style.css';
+
 import Navbar from './components/Navbar';
 import MobileKeyboardContainer from './components/Mobile/MobileKeyboard';
 import DesktopKeyboardContainer from './components/Desktop/DesktopKeyboard';
 import TextArea from './components/TextArea';
-import './assets/style/style.css';
 
 export default function App() {
 	const [text, addText] = useState('');
