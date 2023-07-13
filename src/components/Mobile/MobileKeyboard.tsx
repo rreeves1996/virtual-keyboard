@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import {
-	ShiftKeyProps,
-	BackSpaceKeyProps,
-	SpaceBarKeyProps,
-	KeyProps,
-} from '../../interfaces/interfaces';
 const MOBILE_KEYBOARD = require('../../keyboard-json/mobile.json');
 const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
 
@@ -12,23 +6,21 @@ type MobileKeyboardContainerProps = ShiftKeyProps &
 	BackSpaceKeyProps &
 	SpaceBarKeyProps;
 
-interface KeyboardSwitcherProps {
+type KeyboardSwitcherProps = {
 	keyboard: string;
 	setKeyboard: (arg: string) => void;
-}
+};
 
-interface RegularKeyboardLayoutProps
-	extends ShiftKeyProps,
-		BackSpaceKeyProps,
-		SpaceBarKeyProps {
-	setKeyboard: (arg: string) => void;
-}
+type RegularKeyboardLayoutProps = ShiftKeyProps &
+	BackSpaceKeyProps &
+	SpaceBarKeyProps & {
+		setKeyboard: (arg: string) => void;
+	};
 
-interface SecondaryKeyboardLayoutProps
-	extends BackSpaceKeyProps,
-		SpaceBarKeyProps {
-	setKeyboard: (arg: string) => void;
-}
+type SecondaryKeyboardLayoutProps = BackSpaceKeyProps &
+	SpaceBarKeyProps & {
+		setKeyboard: (arg: string) => void;
+	};
 
 function Key({ children, handleAddText }: KeyProps) {
 	return (

@@ -1,20 +1,20 @@
-export interface KeyProps {
+type KeyProps = {
 	children: string;
 	handleAddText: (arg?: string) => void;
-}
+};
 
-export interface ShiftKeyProps {
+type ShiftKeyProps = {
 	handleCaseChange: () => void;
-}
+};
 
-export interface BackSpaceKeyProps {
+type BackSpaceKeyProps = {
 	handleBackspace: () => void;
-}
+};
 
-export interface SpaceBarKeyProps {
+type SpaceBarKeyProps = {
 	handleAddText: (arg?: any) => void;
-}
+};
 
-export interface CapsLockKeyProps {
+type CapsLockKeyProps = {
 	handleCapsLock: () => void;
-}
+};
