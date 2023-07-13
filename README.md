@@ -43,12 +43,12 @@ My goals included:
 Nearly four months after creating this app, and I decided to tackle a refactor. A lot of my code was messy, strange, hard to follow, and it was all written in JavaScript, not TypeScript. After spending the last four months learning more about React, TypeScript, and Front-End Development as a whole, I decided to refactor it, so I could actually be proud of it sitting in my portfolio vs. simply displaying how far I've come since I've created the app by comparing it with my recent works.
 
 Here was my process:
-Step one - integrate TypeScript
-Step two - from large scope to small, get general idea if the ways I went about creating the program can work, or if I need to start from scratch in certain areas
-Step three - clean up keyboard arrays by putting the data in external json files
-Step four - clean up messy useEffects that I used to cheat formatting (originally, I wanted to keep the code clean, so I wanted to render the key keys by mapping through arrays of strings with the characters being the individual array items. However, this became a challenege when I wanted certain special keys on the same rows as these character maps. To workaround this, I previously had put in useEffects that would prepend/append the special keys on pageload - in my junior brain this was a good solution, as I could continue to use my maps. I overcame this "workaround" by simply using an index, and conditional rendering based on the index.)
-Step five - reorganize messy JSX by dividing components up more (i.e. components for every keyboard layout)
-Step six - clean up weird JSX inconsistencies/poor semantics
+- Step one - integrate TypeScript (i.e. install dependencies, change files to .tsx, and solve the errors that make TypeScript angry)
+- Step two - from large scope to small, get general idea if the ways I went about creating the program can work, or if I need to start from scratch in certain areas
+- Step three - clean up keyboard arrays by putting the data in external json files
+- Step four - clean up messy useEffects that I used to cheat formatting (originally, I wanted to keep the code clean, so I wanted to render the key keys by mapping through arrays of strings with the characters being the individual array items. However, this became a challenege when I wanted certain special keys on the same rows as these character maps. To workaround this, I previously had put in useEffects that would prepend/append the special keys on pageload - in my junior brain this was a good solution, as I could continue to use my maps. I overcame this "workaround" by simply using an index, and conditional rendering based on the index.)
+- Step five - reorganize messy JSX by dividing components up more (i.e. components for every keyboard layout)
+- Step six - clean up weird JSX inconsistencies/poor semantics
 
 Overall, I'm happy with the refactor. A huge portion of my mistakes came from failing to understand commonpractices in React and in development, and after spending the last four months learning, I was able to correct those mistakes. The code is much easier to follow now, and I think for the most part accomplished its goals as well as I'd expect of it without building the application from scratch.
 
