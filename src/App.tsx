@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './assets/style/style.css';
-
 import Navbar from './components/Navbar';
 import MobileKeyboardContainer from './components/Mobile/MobileKeyboard';
 import DesktopKeyboardContainer from './components/Desktop/DesktopKeyboard';
@@ -8,7 +7,7 @@ import TextArea from './components/TextArea';
 
 export default function App() {
 	const [text, addText] = useState('');
-	const [uppercase, toggleCaps] = useState(false);
+	const [uppercase, toggleUppercase] = useState(false);
 	const [capslock, toggleCapslock] = useState(false);
 	const [width, setWidth] = useState(0);
 
@@ -28,22 +27,18 @@ export default function App() {
 			let lowercaseKey = document.querySelectorAll('.lowercase-key');
 
 			lowercaseKey.forEach((key) => {
-				key.innerHTML = key.innerHTML.toUpperCase();
-
 				key.removeAttribute('lowercase-key');
 				key.setAttribute('class', 'key uppercase-key');
 			});
-			toggleCaps(!uppercase);
+			toggleUppercase(!uppercase);
 		} else {
 			let uppercaseKey = document.querySelectorAll('.uppercase-key');
 
 			uppercaseKey.forEach((key) => {
-				key.innerHTML = key.innerHTML.toLowerCase();
-
 				key.removeAttribute('uppercase-key');
 				key.setAttribute('class', 'key lowercase-key');
 			});
-			toggleCaps(!uppercase);
+			toggleUppercase(!uppercase);
 		}
 	};
 
@@ -57,16 +52,16 @@ export default function App() {
 	};
 
 	useEffect(() => {
+		const queryScreenWidth = () => {
+			const width = window.innerWidth;
+			setWidth(width);
+		};
+
 		queryScreenWidth();
 
 		window.addEventListener('resize', queryScreenWidth);
 		return () => window.removeEventListener('resize', queryScreenWidth);
 	}, []);
-
-	const queryScreenWidth = () => {
-		const width = window.innerWidth;
-		setWidth(width);
-	};
 
 	return (
 		<>
@@ -74,7 +69,6 @@ export default function App() {
 			<main>
 				<header>
 					<code>Type anything using the virtual keyboard</code>
-					<code>(or your own keyboard)</code>
 				</header>
 				<section>
 					<TextArea text={text} handleAddText={handleAddText} />
@@ -84,12 +78,14 @@ export default function App() {
 							handleCaseChange={handleCaseChange}
 							handleCapsLock={handleCapsLock}
 							handleBackspace={handleBackspace}
+							uppercase={uppercase}
 						/>
 					) : (
 						<MobileKeyboardContainer
 							handleAddText={handleAddText}
 							handleCaseChange={handleCaseChange}
 							handleBackspace={handleBackspace}
+							uppercase={uppercase}
 						/>
 					)}
 				</section>

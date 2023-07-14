@@ -4,7 +4,9 @@ const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
 
 type MobileKeyboardContainerProps = ShiftKeyProps &
 	BackSpaceKeyProps &
-	SpaceBarKeyProps;
+	SpaceBarKeyProps & {
+		uppercase: boolean;
+	};
 
 type KeyboardSwitcherProps = {
 	keyboard: string;
@@ -15,6 +17,7 @@ type RegularKeyboardLayoutProps = ShiftKeyProps &
 	BackSpaceKeyProps &
 	SpaceBarKeyProps & {
 		setKeyboard: (arg: string) => void;
+		uppercase: boolean;
 	};
 
 type SecondaryKeyboardLayoutProps = BackSpaceKeyProps &
@@ -88,6 +91,7 @@ function RegularKeyboard({
 	handleAddText,
 	handleBackspace,
 	setKeyboard,
+	uppercase,
 }: RegularKeyboardLayoutProps) {
 	return (
 		<>
@@ -98,7 +102,9 @@ function RegularKeyboard({
 					) : null}
 
 					{row.map((key: any) => (
-						<Key handleAddText={handleAddText}>{key}</Key>
+						<Key handleAddText={handleAddText}>
+							{uppercase ? key.toUpperCase() : key}
+						</Key>
 					))}
 
 					{index === 2 ? (
@@ -184,6 +190,7 @@ export default function MobileKeyboardContainer({
 	handleAddText,
 	handleBackspace,
 	handleCaseChange,
+	uppercase,
 }: MobileKeyboardContainerProps) {
 	const [keyboard, setKeyboard] = useState('chars');
 
@@ -196,6 +203,7 @@ export default function MobileKeyboardContainer({
 						handleAddText={handleAddText}
 						handleBackspace={handleBackspace}
 						setKeyboard={setKeyboard}
+						uppercase={uppercase}
 					/>
 				);
 			}

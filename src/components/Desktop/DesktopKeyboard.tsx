@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-	ShiftKeyProps,
-	BackSpaceKeyProps,
-	SpaceBarKeyProps,
-	CapsLockKeyProps,
-	KeyProps,
-} from '../../interfaces/interfaces';
 const KEYBOARD = require('../../keyboard-json/desktop.json');
 
 type KeyboardProps = ShiftKeyProps &
 	BackSpaceKeyProps &
 	SpaceBarKeyProps &
-	CapsLockKeyProps;
+	CapsLockKeyProps & {
+		uppercase: boolean;
+	};
 
 function Key({ children, handleAddText }: KeyProps) {
 	return (
@@ -60,6 +55,7 @@ export default function DesktopKeyboardContainer({
 	handleBackspace,
 	handleCapsLock,
 	handleCaseChange,
+	uppercase,
 }: KeyboardProps) {
 	const { regchars } = KEYBOARD.desktop;
 
@@ -77,7 +73,9 @@ export default function DesktopKeyboardContainer({
 						) : null}
 
 						{row.map((key: any) => (
-							<Key handleAddText={handleAddText}>{key}</Key>
+							<Key handleAddText={handleAddText}>
+								{uppercase ? key.toUpperCase() : key}
+							</Key>
 						))}
 
 						{index === 0 ? (
