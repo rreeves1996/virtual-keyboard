@@ -13,33 +13,17 @@ export default function App() {
 
 	const handleAddText = (event: any) => {
 		if (uppercase) {
-			addText(text + event.toUpperCase());
+			addText((prevState) => text + event.toUpperCase());
 			if (!capslock) {
-				handleCaseChange();
+				toggleUppercase(!uppercase);
 			}
 		} else {
-			addText(text + event);
+			addText((prevState) => text + event);
 		}
 	};
 
 	const handleCaseChange = () => {
-		if (!uppercase) {
-			let lowercaseKey = document.querySelectorAll('.lowercase-key');
-
-			lowercaseKey.forEach((key) => {
-				key.removeAttribute('lowercase-key');
-				key.setAttribute('class', 'key uppercase-key');
-			});
-			toggleUppercase(!uppercase);
-		} else {
-			let uppercaseKey = document.querySelectorAll('.uppercase-key');
-
-			uppercaseKey.forEach((key) => {
-				key.removeAttribute('uppercase-key');
-				key.setAttribute('class', 'key lowercase-key');
-			});
-			toggleUppercase(!uppercase);
-		}
+		toggleUppercase(!uppercase);
 	};
 
 	const handleCapsLock = () => {

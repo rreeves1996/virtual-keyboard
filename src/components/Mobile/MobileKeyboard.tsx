@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 const MOBILE_KEYBOARD = require('../../keyboard-json/mobile.json');
 const { regchars, numbers, specchars } = MOBILE_KEYBOARD.mobile;
 
@@ -95,14 +96,14 @@ function RegularKeyboard({
 }: RegularKeyboardLayoutProps) {
 	return (
 		<>
-			{regchars.map((row: any, index: number) => (
+			{regchars.map((row: string[], index: number) => (
 				<div className='row'>
 					{index === 2 ? (
 						<ShiftKey handleCaseChange={handleCaseChange} />
 					) : null}
 
-					{row.map((key: any) => (
-						<Key handleAddText={handleAddText}>
+					{row.map((key: string) => (
+						<Key handleAddText={handleAddText} key={uuidv4()}>
 							{uppercase ? key.toUpperCase() : key}
 						</Key>
 					))}
@@ -127,7 +128,7 @@ function NumberKeyboard({
 }: SecondaryKeyboardLayoutProps) {
 	return (
 		<>
-			{numbers.map((row: any, index: number) => (
+			{numbers.map((row: string[], index: number) => (
 				<div className='row'>
 					{index === 2 ? (
 						<SecondaryKeyboardSwitcher
@@ -136,7 +137,7 @@ function NumberKeyboard({
 						/>
 					) : null}
 
-					{row.map((key: any) => (
+					{row.map((key: string) => (
 						<Key handleAddText={handleAddText}>{key}</Key>
 					))}
 
@@ -160,7 +161,7 @@ function SpecialCharKeyboard({
 }: SecondaryKeyboardLayoutProps) {
 	return (
 		<>
-			{specchars.map((row: any, index: number) => (
+			{specchars.map((row: string[], index: number) => (
 				<div className='row'>
 					{index === 2 ? (
 						<SecondaryKeyboardSwitcher
@@ -169,7 +170,7 @@ function SpecialCharKeyboard({
 						/>
 					) : null}
 
-					{row.map((key: any) => (
+					{row.map((key: string) => (
 						<Key handleAddText={handleAddText}>{key}</Key>
 					))}
 

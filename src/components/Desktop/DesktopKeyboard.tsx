@@ -1,4 +1,9 @@
 import React from 'react';
+import CapsLockKey from './Keys/CapsLockKey';
+import ShiftKey from './Keys/ShiftKey';
+import DesktopKey from './Keys/DesktopKey';
+import BackSpaceKey from './Keys/BackSpaceKey';
+import SpaceBarKey from './Keys/SpaceBarKey';
 const KEYBOARD = require('../../keyboard-json/desktop.json');
 
 type KeyboardProps = ShiftKeyProps &
@@ -8,48 +13,6 @@ type KeyboardProps = ShiftKeyProps &
 		uppercase: boolean;
 	};
 
-function Key({ children, handleAddText }: KeyProps) {
-	return (
-		<button
-			className='key lowercase-key'
-			onClick={() => handleAddText(children)}>
-			{children}
-		</button>
-	);
-}
-
-function ShiftKey({ handleCaseChange }: ShiftKeyProps) {
-	return (
-		<button className='key shift-key' onClick={() => handleCaseChange()}>
-			shift
-		</button>
-	);
-}
-
-function BackSpaceKey({ handleBackspace }: BackSpaceKeyProps) {
-	return (
-		<button className='key backspace-key' onClick={() => handleBackspace()}>
-			<i className='fa-solid fa-arrow-left-long'></i>
-		</button>
-	);
-}
-
-function SpaceBarKey({ handleAddText }: SpaceBarKeyProps) {
-	return (
-		<button className='key spacebar-key' onClick={() => handleAddText(' ')}>
-			<div className='spacebar-icon'>]</div>
-		</button>
-	);
-}
-
-function CapsLockKey({ handleCapsLock }: CapsLockKeyProps) {
-	return (
-		<button className='key capslock-key' onClick={() => handleCapsLock()}>
-			caps
-		</button>
-	);
-}
-
 export default function DesktopKeyboardContainer({
 	handleAddText,
 	handleBackspace,
@@ -57,35 +20,73 @@ export default function DesktopKeyboardContainer({
 	handleCaseChange,
 	uppercase,
 }: KeyboardProps) {
-	const { regchars } = KEYBOARD.desktop;
+	const { regchars, capschars } = KEYBOARD.desktop;
 
-	return (
-		<>
+	// If uppercase is not true, map lowercase keyboard
+	if (!uppercase) {
+		return (
 			<div className='keyboard'>
-				{regchars.map((row: any, index: number) => (
+				{/* First, map the four individual rows */}
+				{regchars.map((row: string[], index: number) => (
 					<div className='row'>
+						{/* If on the third row, add capslock key at the beginning of the row */}
 						{index === 2 ? (
 							<CapsLockKey handleCapsLock={handleCapsLock} />
 						) : null}
 
+						{/* If on the fourth row, add shift key at the beginning of the row */}
 						{index === 3 ? (
 							<ShiftKey handleCaseChange={handleCaseChange} />
 						) : null}
 
-						{row.map((key: any) => (
-							<Key handleAddText={handleAddText}>
-								{uppercase ? key.toUpperCase() : key}
-							</Key>
+						{/* Map through the actual keys that are on the current row being mapped */}
+						{row.map((key: string) => (
+							<DesktopKey handleAddText={handleAddText}>{key}</DesktopKey>
 						))}
 
+						{/* If on the first row, add capslock key at the end of the row */}
 						{index === 0 ? (
 							<BackSpaceKey handleBackspace={handleBackspace} />
 						) : null}
 					</div>
 				))}
 
+				{/* After all the rows are mapped, add the space bar at the bottom! */}
 				<SpaceBarKey handleAddText={handleAddText} />
 			</div>
-		</>
-	);
+		);
+	} else {
+		// If uppercase IS true, map the uppercase keyboard!
+		return (
+			<div className='keyboard'>
+				{/* First, map the four individual rows */}
+				{capschars.map((row: string[], index: number) => (
+					<div className='row'>
+						{/* If on the third row, add capslock key at the beginning of the row */}
+						{index === 2 ? (
+							<CapsLockKey handleCapsLock={handleCapsLock} />
+						) : null}
+
+						{/* If on the fourth row, add shift key at the beginning of the row */}
+						{index === 3 ? (
+							<ShiftKey handleCaseChange={handleCaseChange} />
+						) : null}
+
+						{/* Map through the actual keys that are on the current row being mapped */}
+						{row.map((key: string) => (
+							<DesktopKey handleAddText={handleAddText}>{key}</DesktopKey>
+						))}
+
+						{/* If on the first row, add capslock key at the end of the row */}
+						{index === 0 ? (
+							<BackSpaceKey handleBackspace={handleBackspace} />
+						) : null}
+					</div>
+				))}
+
+				{/* After all the rows are mapped, add the space bar at the bottom! */}
+				<SpaceBarKey handleAddText={handleAddText} />
+			</div>
+		);
+	}
 }
