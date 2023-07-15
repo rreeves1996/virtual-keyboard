@@ -209,6 +209,7 @@ section {
 	line-height: 75%;
 	opacity: 80%;
 	transition: all 0.15s;
+	user-select: none;
 }
 .key:hover {
 	filter: brightness(1.3);

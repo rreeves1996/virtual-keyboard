@@ -12,13 +12,13 @@ export default function App() {
 	const [width, setWidth] = useState(0);
 
 	const handleAddText = (event: any) => {
+		addText((prevState) => text + event);
+
+		// If uppercase is true and capslock is NOT true, toggle uppercase
 		if (uppercase) {
-			addText((prevState) => text + event.toUpperCase());
 			if (!capslock) {
 				toggleUppercase(!uppercase);
 			}
-		} else {
-			addText((prevState) => text + event);
 		}
 	};
 
@@ -35,6 +35,7 @@ export default function App() {
 		addText(text.slice(0, -1));
 	};
 
+	// useEffect to query window size
 	useEffect(() => {
 		const queryScreenWidth = () => {
 			const width = window.innerWidth;
@@ -54,8 +55,11 @@ export default function App() {
 				<header>
 					<code>Type anything using the virtual keyboard</code>
 				</header>
+
 				<section>
+					{/* TextArea persists through mobile and desktop keyboards */}
 					<TextArea text={text} handleAddText={handleAddText} />
+
 					{width > 768 ? (
 						<DesktopKeyboardContainer
 							handleAddText={handleAddText}

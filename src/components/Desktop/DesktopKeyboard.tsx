@@ -4,7 +4,7 @@ import ShiftKey from './Keys/ShiftKey';
 import DesktopKey from './Keys/DesktopKey';
 import BackSpaceKey from './Keys/BackSpaceKey';
 import SpaceBarKey from './Keys/SpaceBarKey';
-const KEYBOARD = require('../../keyboard-json/desktop.json');
+const DESKTOP_KEYBOARD = require('./desktop-keyboard.json');
 
 type KeyboardProps = ShiftKeyProps &
 	BackSpaceKeyProps &
@@ -20,7 +20,8 @@ export default function DesktopKeyboardContainer({
 	handleCaseChange,
 	uppercase,
 }: KeyboardProps) {
-	const { regchars, capschars } = KEYBOARD.desktop;
+	// Deconstruct the regchars array and capschars array from the keyboard JSON
+	const { regchars, capschars } = DESKTOP_KEYBOARD;
 
 	// If uppercase is not true, map lowercase keyboard
 	if (!uppercase) {
