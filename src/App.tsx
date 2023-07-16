@@ -32,7 +32,8 @@ export default function App() {
 	};
 
 	const handleBackspace = () => {
-		addText(text.slice(0, -1));
+		const newText = text.slice(0, -1);
+		addText((prevState) => newText);
 	};
 
 	// useEffect to query window size
