@@ -1,9 +1,5 @@
 import React from 'react';
 
-type KeyboardSwitcherProps = {
-	keyboard: string;
-	setKeyboard: (arg: string) => void;
-};
 
 export default function KeyboardSwitcher({
 	keyboard,

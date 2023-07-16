@@ -20,6 +20,7 @@ export default function RegularKeyboard({
 	setKeyboard,
 	uppercase,
 }: RegularKeyboardLayoutProps) {
+  // Deconstruct the regchars array and capschars array from the keyboard JSON
 	const { regchars, capschars } = MOBILE_KEYBOARD;
 
 	// If uppercase is not true, map lowercase keyboard

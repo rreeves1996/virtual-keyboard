@@ -16,6 +16,7 @@ export default function SpecialCharKeyboard({
 	handleBackspace,
 	setKeyboard,
 }: SecondaryKeyboardLayoutProps) {
+  // Deconstruct the specchars array from the keyboard JSON
 	const { specchars } = MOBILE_KEYBOARD;
 
 	return (
