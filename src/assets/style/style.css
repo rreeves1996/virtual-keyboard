@@ -5,14 +5,12 @@
 html {
 	width: 100%;
 	position: relative;
-	/* overflow: hidden; */
 }
 body {
 	position: relative;
 	background-color: var(--grey);
 	color: #ececec;
 	margin: 0;
-	/* overflow: hidden; */
 }
 main {
 	display: flex;
